@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/index.css'%}">
+
+    <title>Weather</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header_content">
+                <div class="header_menu">
+                    <div class="logo_text">Weather</div>
+                    <nav class="nav">
+                        <ul>
+                           <li class="header_links"><a href="#"><button class="header_button">Home</button></a></li>
+                           <li class="header_links"><a href="#"><button class="header_button">Information</button></a></li>
+                           <li class="header_links" id="hui"><a href="#"><button class="header_button">Documentation</button></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header_lineair"></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="intro">
+        <div class="container">
+            <div class="intro_content">
+                <div class="intro_content1">
+                    <div class="intro_text"><h1>Weather in your city</h1></div>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        {{form.name}}
+                        <input type="submit" name="send" value="Узнать" class="submit_intro">
+                    </form>
+                </div>
+
+                <div class="intro_content2">
+                    <div class="intro_text"><h1>Information</h1></div>
+                    {% if all_info != "not found" %}
+                    {%for info in all_info%}
+                    <b>Город:</b>{{info.city}}<br>
+                    <b>Температура:</b>{{info.temp}} <sup>o</sup><br>
+                    <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоды" class="img-thumbnail">
+                    {% endfor %}
+                    {% else %}
+                    <h1>Не найдено</h1>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </section>
+<footer class="footer">
+        <div class="container">
+            <div class="footer content">
+                <div class="links">
+                    <ul>
+                        <li class="footer_links" id="getstarted"><h3>Get Started</h3></li>
+                        <li class="footer_links" id="color">Home</li>
+                        <li class="footer_links" id="color">Information</li>
+                        <li class="footer_links" id="color">Documentation</li>
+                        <li class="footer_links" id="color">Other...</li>
+                    </ul>
+                    <ul>
+                        <li class="footer_links" id="getstarted"><h3>About us</h3></li>
+                        <li class="footer_links" id="color">Company Infotmation</li>
+                        <li class="footer_links" id="color">Contact us</li>
+                        <li class="footer_links" id="color">Reviews</li>
+                        <li class="footer_links" id="color">Other...</li>
+                    </ul>
+                    <ul>
+                        <li class="footer_links" id="getstarted"><h3>Support</h3></li>
+                        <li class="footer_links" id="color">FAQ</li>
+                        <li class="footer_links" id="color">Help desl</li>
+                        <li class="footer_links" id="color">Forums</li>
+                        <li class="footer_links" id="color">Other...</li>
+                    </ul>
+                    <ul>
+                        <li class="footer_links" id="getstarted"><h3>Legal</h3></li>
+                        <li class="footer_links" id="color">Terms of Service</li>
+                        <li class="footer_links" id="color">Terms of Use</li>
+                        <li class="footer_links" id="color">Privacy Policy</li>
+                        <li class="footer_links" id="color">Other...</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
